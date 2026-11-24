@@ -1,8 +1,17 @@
-import { BadgeCheck, ExternalLink, ShieldCheck } from "lucide-react";
+import { BadgeCheck, ExternalLink } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { useLang } from "../lang";
 import { ANTICHEAT_URL } from "../release";
+import { BrandMark } from "./brands";
 import { Reveal, SectionHeader, trackSpotlight } from "./ui";
+
+/** Logos oficiales (marcas de sus dueños, solo para identificarlos). */
+const LOGOS: Record<string, ReactNode> = {
+  BattlEye: <img src="/brands/battleye.png" alt="" className="size-16 rounded-xl" loading="lazy" />,
+  "Riot Vanguard": <img src="/brands/vanguard.svg" alt="" className="h-14 w-auto" loading="lazy" />,
+  "FACEIT AC": <BrandMark name="faceit" className="size-12 text-[#ff5500]" />,
+};
 
 /** Anti-cheats: con qué convive VRes y por qué (sin prometer lo que no se puede). */
 export function AntiCheat() {
@@ -19,12 +28,12 @@ export function AntiCheat() {
           <Reveal key={item.name} delay={index * 100}>
             <article
               onMouseMove={trackSpotlight}
-              className="spotlight flex h-full flex-col items-center rounded-3xl border border-line bg-panel px-6 py-9 text-center transition-colors hover:border-lime/40"
+              className="spotlight cut flex h-full flex-col items-center border border-line bg-panel px-6 py-9 text-center transition-colors hover:border-lime/40"
             >
-              <span className="relative mb-5 inline-flex size-16 items-center justify-center rounded-2xl border border-lime/40 bg-lime/10">
-                <ShieldCheck className="size-8 text-lime" aria-hidden />
+              <span className="relative mb-6 inline-flex size-24 items-center justify-center rounded-3xl border border-white/10 bg-[#0e0e0e] shadow-[0_12px_30px_rgb(0_0_0/0.5)]">
+                {LOGOS[item.name]}
                 <BadgeCheck
-                  className="absolute -right-2 -bottom-2 size-7 rounded-full bg-ink text-lime"
+                  className="absolute -right-2.5 -bottom-2.5 size-8 rounded-full bg-ink text-lime"
                   aria-hidden
                 />
               </span>
@@ -49,6 +58,7 @@ export function AntiCheat() {
           {t.anticheat.link}
           <ExternalLink className="size-3.5" aria-hidden />
         </a>
+        <p className="mt-6 text-[11px] text-muted/70">{t.anticheat.brands}</p>
       </Reveal>
     </section>
   );

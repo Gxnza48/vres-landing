@@ -1,98 +1,146 @@
-import { ChevronDown, Download } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { ChevronsLeftRight, Download } from "lucide-react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 
 import { useLang } from "../lang";
 import { DISCORD_URL, RELEASES_URL, useRelease } from "../release";
-import { DiscordIcon, Reveal } from "./ui";
+import { CityScene } from "./scene";
+import { DiscordIcon } from "./ui";
 
-/** El ícono de VRes dentro del marco de enfoque, que "fija el objetivo" al cargar. */
-function FocusIcon() {
-  const corners = [
-    { position: "top-0 left-0 border-t-[3px] border-l-[3px] rounded-tl-lg", delay: 0 },
-    { position: "top-0 right-0 border-t-[3px] border-r-[3px] rounded-tr-lg", delay: 90 },
-    { position: "bottom-0 left-0 border-b-[3px] border-l-[3px] rounded-bl-lg", delay: 180 },
-    { position: "bottom-0 right-0 border-b-[3px] border-r-[3px] rounded-br-lg", delay: 270 },
-  ];
-  return (
-    <div className="relative mx-auto mb-10 size-36 animate-float sm:size-44">
-      <div aria-hidden className="absolute inset-4 rounded-[2rem] bg-lime/30 blur-2xl" />
-      <div className="absolute inset-5 overflow-hidden rounded-[1.6rem] border border-lime/30 bg-ink">
-        <img src="/icon.png" alt="" className="h-full w-full object-cover" width={256} height={256} />
-        <div
-          aria-hidden
-          className="absolute inset-x-0 top-0 h-1/3 animate-scan bg-gradient-to-b from-transparent via-lime/25 to-transparent"
-        />
-      </div>
-      {corners.map((corner) => (
-        <span
-          key={corner.position}
-          aria-hidden
-          className={`corner animate-lock ${corner.position}`}
-          style={{ animationDelay: `${corner.delay}ms` }}
-        />
-      ))}
-    </div>
-  );
-}
+const MIN = 8;
+const MAX = 92;
+const clamp = (value: number) => Math.min(MAX, Math.max(MIN, value));
 
-/** Primera pantalla: marca, promesa y descarga. */
+/**
+ * Primera pantalla: la escena de neón partida en "sin VRes" y "con VRes", con
+ * un divisor que se arrastra. Hasta que lo tocas, se mueve solo.
+ */
 export function Hero() {
   const { t } = useLang();
   const release = useRelease();
-  const glow = useRef<HTMLDivElement>(null);
+  const section = useRef<HTMLElement>(null);
+  const [touched, setTouched] = useState(false);
+  const [value, setValue] = useState(60);
 
-  // El brillo sigue al mouse (suave, sin re-render).
+  // El divisor vive en una variable CSS: moverlo no re-renderiza la escena.
+  const place = (percent: number) => {
+    section.current?.style.setProperty("--split", `${clamp(percent)}%`);
+  };
+
   useEffect(() => {
-    const element = glow.current;
-    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const onMove = (event: PointerEvent) => {
-      element.style.setProperty("--gx", `${event.clientX}px`);
-      element.style.setProperty("--gy", `${event.clientY}px`);
+    if (touched || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      frame = requestAnimationFrame(tick);
+      place(60 + 16 * Math.sin((now - start) / 1500));
     };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, []);
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [touched]);
+
+  const fromPointer = (event: PointerEvent<HTMLElement>) => {
+    const rect = section.current?.getBoundingClientRect();
+    if (!rect) return;
+    const percent = clamp(((event.clientX - rect.left) / rect.width) * 100);
+    place(percent);
+    setValue(Math.round(percent));
+  };
+
+  const onKey = (event: KeyboardEvent<HTMLButtonElement>) => {
+    const step = event.shiftKey ? 10 : 3;
+    const next = event.key === "ArrowLeft" ? value - step : event.key === "ArrowRight" ? value + step : null;
+    if (next === null) return;
+    event.preventDefault();
+    setTouched(true);
+    setValue(clamp(next));
+    place(next);
+  };
+
+  const ticker = [...t.hero.ticker, ...t.hero.ticker, ...t.hero.ticker, ...t.hero.ticker];
 
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-16 sm:pt-40">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_50%_0%,black_25%,transparent_70%)]" />
-        <div className="absolute top-[-18rem] left-1/2 size-[48rem] -translate-x-1/2 animate-pulse-glow rounded-full bg-lime/20 blur-[140px]" />
-        <div
-          ref={glow}
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(500px circle at var(--gx, 50%) var(--gy, 30%), rgb(158 250 18 / 0.08), transparent 60%)",
+    <section
+      ref={section}
+      id="top"
+      className="relative isolate min-h-[max(100svh,46rem)] overflow-hidden"
+      style={{ "--split": "60%" } as CSSProperties}
+    >
+      {/* Antes: la imagen tal cual. */}
+      <div aria-hidden className="absolute inset-0 [filter:saturate(0.3)_brightness(0.85)_contrast(0.94)]">
+        <CityScene id="hero-before" />
+      </div>
+      {/* Después: con VRes. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 [clip-path:inset(0_0_0_var(--split))] [filter:saturate(1.9)_contrast(1.06)_brightness(1.06)]"
+      >
+        <CityScene id="hero-after" />
+      </div>
+      <div aria-hidden className="scanlines pointer-events-none absolute inset-0 opacity-50" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/75 via-black/25 to-transparent"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/75 to-transparent"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/80 to-transparent"
+      />
+
+      {/* Divisor. */}
+      <div className="absolute top-0 bottom-0 z-20" style={{ left: "var(--split)" }}>
+        <div aria-hidden className="absolute inset-y-0 -left-px w-0.5 bg-lime shadow-[0_0_24px_#9efa12]" />
+        <span className="absolute top-[7.1rem] right-10 font-mono text-[11px] font-semibold tracking-[0.3em] whitespace-nowrap text-white/80 uppercase">
+          ◀ {t.hero.before}
+        </span>
+        <span className="absolute top-[7.1rem] left-10 font-mono text-[11px] font-semibold tracking-[0.3em] whitespace-nowrap text-lime uppercase">
+          {t.hero.after} ▶
+        </span>
+        <button
+          type="button"
+          role="slider"
+          aria-label={t.hero.drag}
+          aria-valuemin={MIN}
+          aria-valuemax={MAX}
+          aria-valuenow={value}
+          onPointerDown={(event) => {
+            event.currentTarget.setPointerCapture(event.pointerId);
+            setTouched(true);
+            fromPointer(event);
           }}
-        />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-ink" />
+          onPointerMove={(event) => {
+            if (event.currentTarget.hasPointerCapture(event.pointerId)) fromPointer(event);
+          }}
+          onKeyDown={onKey}
+          className="cut-sm absolute top-[6rem] left-0 flex size-14 -translate-x-1/2 cursor-ew-resize touch-none items-center justify-center bg-lime text-ink shadow-[0_0_40px_rgb(158_250_18/0.7)] transition-transform hover:scale-110"
+        >
+          <ChevronsLeftRight className="size-6" aria-hidden />
+        </button>
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-5 text-center">
-        <FocusIcon />
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-lime uppercase sm:text-sm">
-          <span className="size-1.5 animate-pulse rounded-full bg-lime" aria-hidden />
-          {t.hero.badge}
+      {/* Contenido. */}
+      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[max(100svh,46rem)] max-w-7xl flex-col justify-end px-5 pt-48 pb-28 sm:px-8 sm:pb-32">
+        <p className="font-mono text-[11px] font-semibold tracking-[0.3em] text-lime uppercase sm:text-xs">
+          // {release ? `v${release.version}` : "VRes"} · {t.hero.badge}
         </p>
-        <h1 className="font-display text-5xl leading-[1.05] font-black tracking-tight sm:text-7xl lg:text-8xl">
-          <span className="block">{t.hero.title1}</span>
-          <span className="block animate-shimmer text-gradient">{t.hero.title2}</span>
+        <h1 className="mt-4 font-display text-[clamp(1.75rem,7.4vw,7rem)] leading-[0.9] font-black tracking-tight uppercase">
+          <span className="block text-white">{t.hero.title1}</span>
+          <span className="block text-lime [text-shadow:0_0_48px_rgb(158_250_18/0.45)]">{t.hero.title2}</span>
         </h1>
-        <p className="mx-auto mt-7 max-w-2xl text-base text-pretty text-muted sm:text-xl">
-          {t.hero.subtitle}
-        </p>
-
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <p className="mt-6 max-w-xl text-base text-pretty text-white/80 sm:text-lg">{t.hero.subtitle}</p>
+        <div className="pointer-events-auto mt-8 flex flex-col gap-3 sm:flex-row">
           <a
             href={release?.url ?? RELEASES_URL}
-            className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-lime px-7 py-4 text-lg font-bold text-ink shadow-[0_0_40px_rgb(158_250_18/0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_60px_rgb(158_250_18/0.6)] sm:w-auto"
+            className="cut group inline-flex items-center justify-center gap-3 bg-lime px-7 py-4 text-ink transition hover:brightness-110"
           >
             <Download className="size-5 transition group-hover:translate-y-0.5" aria-hidden />
             <span className="flex flex-col items-start leading-tight">
-              {t.hero.download}
+              <span className="font-display text-sm font-black tracking-wider uppercase">{t.hero.download}</span>
               {release && (
-                <span className="text-xs font-semibold opacity-70">
+                <span className="font-mono text-[11px] font-semibold opacity-75">
                   {t.hero.version.replace("{v}", release.version)}
                   {release.sizeMb ? ` · ${release.sizeMb} MB` : ""}
                 </span>
@@ -103,42 +151,31 @@ export function Hero() {
             href={DISCORD_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex w-full items-center justify-center gap-3 rounded-2xl border border-discord/50 bg-discord/15 px-7 py-4 text-lg font-semibold text-fg transition hover:-translate-y-0.5 hover:bg-discord/25 sm:w-auto"
+            className="cut inline-flex items-center justify-center gap-3 border border-white/20 bg-white/5 px-7 py-4 text-white backdrop-blur transition hover:bg-discord/30"
           >
-            <DiscordIcon className="size-5 text-[#8b93ff]" />
-            {t.hero.discord}
+            <DiscordIcon className="size-5" />
+            <span className="font-display text-sm font-black tracking-wider uppercase">{t.hero.discord}</span>
           </a>
         </div>
-        <p className="mt-5 text-xs text-muted sm:text-sm">{t.hero.meta}</p>
+        <p className="mt-4 text-xs text-white/55">{t.hero.meta}</p>
+      </div>
 
-        <Reveal className="mt-16" delay={150}>
-          <dl className="grid grid-cols-2 overflow-hidden rounded-3xl border border-line bg-panel/70 backdrop-blur sm:grid-cols-4">
-            {t.stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                className={`flex flex-col items-center gap-1 px-4 py-6 ${
-                  index > 0 ? "sm:border-l sm:border-line" : ""
-                } ${index % 2 === 1 ? "border-l border-line sm:border-l" : ""} ${
-                  index > 1 ? "border-t border-line sm:border-t-0" : ""
-                }`}
-              >
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-display text-xl font-black whitespace-nowrap text-lime sm:text-2xl lg:text-[1.7rem]">
-                  {stat.value}
-                </dd>
-                <dd className="text-center text-xs text-muted sm:text-sm">{stat.label}</dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
-
-        <a
-          href="#demo"
-          className="mt-12 inline-flex flex-col items-center gap-1 text-xs text-muted transition hover:text-fg"
-        >
-          {t.hero.scroll}
-          <ChevronDown className="size-5 animate-bounce" aria-hidden />
-        </a>
+      {/* Cinta tipo transmisión. */}
+      <div className="absolute inset-x-0 bottom-0 z-20 overflow-hidden bg-lime py-3 text-ink">
+        <div className="flex w-max animate-marquee">
+          {ticker.map((item, index) => (
+            <span
+              key={index}
+              aria-hidden={index >= t.hero.ticker.length}
+              className="flex items-center gap-6 pr-6 font-display text-xs font-black tracking-[0.2em] whitespace-nowrap uppercase sm:text-sm"
+            >
+              {item}
+              <span aria-hidden className="text-ink/50">
+                ✦
+              </span>
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -23,8 +23,8 @@ const es = {
   },
   hero: {
     badge: "Gratis · Código abierto · Sin cuenta",
-    title1: "Tu pantalla,",
-    title2: "a otro nivel.",
+    title1: "Tu monitor,",
+    title2: "desbloqueado.",
     subtitle:
       "Saturación hasta 300 %, vibrance digital, resolución estirada, crosshair y perfiles por juego. Todo en una app liviana para Windows, sin suscripciones y sin telemetría.",
     download: "Descargar para Windows",
@@ -32,6 +32,10 @@ const es = {
     meta: "Windows 10 y 11 · 64 bits · Sin permisos de administrador",
     version: "Versión {v}",
     scroll: "Descubre más",
+    before: "Sin VRes",
+    after: "Con VRes",
+    drag: "Arrastra para comparar",
+    ticker: ["Saturación 300 %", "Vibrance NVIDIA · AMD", "Resolución estirada", "Crosshair", "Perfiles por juego", "Dark Boost", "Zoom", "Gratis", "Sin cuenta", "Código abierto"],
   },
   stats: [
     { value: "300 %", label: "de saturación máxima" },
@@ -99,6 +103,7 @@ const es = {
     },
   },
   games: {
+    eyebrow: "Juegos",
     title: "Listo para tus juegos",
     subtitle: "Funciona con cualquier juego, y reconoce el que está al frente por su nombre, sin abrir su proceso.",
     others: "y cualquier otro",
@@ -155,6 +160,7 @@ const es = {
     ],
     note: "Ningún anti-cheat certifica programas de terceros, y los editores juzgan por el efecto: el crosshair, el zoom y el Dark Boost pueden considerarse ventaja en algunos juegos o torneos. Por eso vienen apagados y con aviso.",
     link: "Leer el detalle",
+    brands: "Los logos son de sus dueños y se usan solo para identificar cada anti-cheat: no implican aprobación ni afiliación.",
   },
   faq: {
     title: "Preguntas frecuentes",
@@ -200,7 +206,7 @@ const es = {
     discord: "Discord",
     license: "Software libre bajo GPL-3.0.",
     disclaimer:
-      "Proyecto independiente, sin afiliación con fabricantes de placas de video ni editores de juegos. Las marcas mencionadas son de sus dueños.",
+      "Proyecto independiente, sin afiliación con fabricantes de placas de video, editores de juegos ni anti-cheats. Las marcas y logos son de sus dueños y se usan solo para identificarlos.",
   },
 };
 
@@ -221,8 +227,8 @@ const en: Copy = {
   },
   hero: {
     badge: "Free · Open source · No account",
-    title1: "Your screen,",
-    title2: "next level.",
+    title1: "Your monitor,",
+    title2: "unlocked.",
     subtitle:
       "Saturation up to 300%, digital vibrance, stretched resolution, crosshair and per-game profiles. All in one lightweight Windows app, with no subscriptions and no telemetry.",
     download: "Download for Windows",
@@ -230,6 +236,10 @@ const en: Copy = {
     meta: "Windows 10 and 11 · 64-bit · No admin rights needed",
     version: "Version {v}",
     scroll: "Discover more",
+    before: "Without VRes",
+    after: "With VRes",
+    drag: "Drag to compare",
+    ticker: ["Saturation 300%", "Vibrance NVIDIA · AMD", "Stretched resolution", "Crosshair", "Per-game profiles", "Dark Boost", "Zoom", "Free", "No account", "Open source"],
   },
   stats: [
     { value: "300%", label: "max saturation" },
@@ -297,6 +307,7 @@ const en: Copy = {
     },
   },
   games: {
+    eyebrow: "Games",
     title: "Ready for your games",
     subtitle: "It works with any game, and recognizes the one in front by its name, without opening its process.",
     others: "and any other",
@@ -353,6 +364,7 @@ const en: Copy = {
     ],
     note: "No anti-cheat certifies third-party software, and publishers judge by effect: the crosshair, zoom and Dark Boost may count as an advantage in some games or tournaments. That's why they ship turned off with a warning.",
     link: "Read the details",
+    brands: "Logos belong to their owners and are used only to identify each anti-cheat: they don't imply approval or affiliation.",
   },
   faq: {
     title: "Frequently asked questions",
@@ -398,7 +410,7 @@ const en: Copy = {
     discord: "Discord",
     license: "Free software under GPL-3.0.",
     disclaimer:
-      "Independent project, not affiliated with graphics card makers or game publishers. Trademarks belong to their owners.",
+      "Independent project, not affiliated with graphics card makers, game publishers or anti-cheats. Trademarks and logos belong to their owners and are used only to identify them.",
   },
 };
 
@@ -417,8 +429,8 @@ const pt: Copy = {
   },
   hero: {
     badge: "Grátis · Código aberto · Sem conta",
-    title1: "Sua tela,",
-    title2: "em outro nível.",
+    title1: "Seu monitor,",
+    title2: "desbloqueado.",
     subtitle:
       "Saturação até 300%, vibrance digital, resolução esticada, crosshair e perfis por jogo. Tudo em um app leve para Windows, sem assinaturas e sem telemetria.",
     download: "Baixar para Windows",
@@ -426,6 +438,10 @@ const pt: Copy = {
     meta: "Windows 10 e 11 · 64 bits · Sem permissão de administrador",
     version: "Versão {v}",
     scroll: "Descubra mais",
+    before: "Sem VRes",
+    after: "Com VRes",
+    drag: "Arraste para comparar",
+    ticker: ["Saturação 300%", "Vibrance NVIDIA · AMD", "Resolução esticada", "Crosshair", "Perfis por jogo", "Dark Boost", "Zoom", "Grátis", "Sem conta", "Código aberto"],
   },
   stats: [
     { value: "300%", label: "de saturação máxima" },
@@ -493,6 +509,7 @@ const pt: Copy = {
     },
   },
   games: {
+    eyebrow: "Jogos",
     title: "Pronto para seus jogos",
     subtitle: "Funciona com qualquer jogo, e reconhece o que está em primeiro plano pelo nome, sem abrir o processo dele.",
     others: "e qualquer outro",
@@ -549,6 +566,7 @@ const pt: Copy = {
     ],
     note: "Nenhum anti-cheat certifica programas de terceiros, e as publicadoras julgam pelo efeito: o crosshair, o zoom e o Dark Boost podem ser considerados vantagem em alguns jogos ou torneios. Por isso vêm desligados e com aviso.",
     link: "Ler os detalhes",
+    brands: "Os logos pertencem aos seus donos e são usados só para identificar cada anti-cheat: não implicam aprovação nem afiliação.",
   },
   faq: {
     title: "Perguntas frequentes",
@@ -594,7 +612,7 @@ const pt: Copy = {
     discord: "Discord",
     license: "Software livre sob GPL-3.0.",
     disclaimer:
-      "Projeto independente, sem afiliação com fabricantes de placas de vídeo nem publicadoras de jogos. As marcas mencionadas pertencem aos seus donos.",
+      "Projeto independente, sem afiliação com fabricantes de placas de vídeo, publicadoras de jogos nem anti-cheats. As marcas e logos pertencem aos seus donos e são usados só para identificá-los.",
   },
 };
 

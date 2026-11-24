@@ -59,7 +59,8 @@ export function SectionHeader({
   return (
     <Reveal className="mx-auto mb-14 max-w-3xl text-center">
       {eyebrow && (
-        <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-4 py-1 text-xs font-semibold tracking-[0.2em] text-lime uppercase">
+        <p className="mb-4 font-mono text-xs font-semibold tracking-[0.35em] text-lime uppercase">
+          <span className="text-lime/50">// </span>
           {eyebrow}
         </p>
       )}
