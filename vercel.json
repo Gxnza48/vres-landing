@@ -3,6 +3,9 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/discord", "destination": "https://discord.gg/aG2ByWDHfG", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/(.*)",
