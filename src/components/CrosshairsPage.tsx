@@ -38,6 +38,7 @@ const TEXT: Record<
       "Copia el código de la mira que te guste.",
       "En VRes, abre Crosshair y baja hasta «Compartir el crosshair».",
       "Pega el código y toca Aplicar. También puedes guardarla con un nombre.",
+      "¿Tienes una mira de VALORANT o CS2? Pega su código igual: VRes la traduce.",
     ],
     shareTitle: "¿Te armaste una mira?",
     shareText:
@@ -59,6 +60,7 @@ const TEXT: Record<
       "Copy the code of the crosshair you like.",
       "In VRes, open Crosshair and scroll to “Share the crosshair”.",
       "Paste the code and tap Apply. You can also save it with a name.",
+      "Got a VALORANT or CS2 crosshair? Paste its code too: VRes translates it.",
     ],
     shareTitle: "Made your own crosshair?",
     shareText:
@@ -80,6 +82,7 @@ const TEXT: Record<
       "Copie o código da mira de que você gostar.",
       "No VRes, abra Crosshair e desça até «Compartilhar o crosshair».",
       "Cole o código e toque em Aplicar. Você também pode salvá-la com um nome.",
+      "Tem uma mira do VALORANT ou do CS2? Cole o código também: o VRes traduz.",
     ],
     shareTitle: "Montou sua própria mira?",
     shareText:
