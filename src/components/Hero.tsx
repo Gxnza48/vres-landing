@@ -178,7 +178,15 @@ export function Hero() {
             <span className="font-display text-sm font-black tracking-wider uppercase">{t.hero.discord}</span>
           </a>
         </div>
-        <p className="mt-4 text-xs text-white/55">{t.hero.meta}</p>
+        <p className="mt-4 text-xs text-white/55">
+          {t.hero.meta} ·{" "}
+          <a
+            href="#virustotal"
+            className="pointer-events-auto font-semibold text-white/80 underline decoration-white/30 underline-offset-2 transition hover:text-lime hover:decoration-lime"
+          >
+            {t.hero.virustotal}
+          </a>
+        </p>
       </div>
 
       {/* Cinta tipo transmisión. */}

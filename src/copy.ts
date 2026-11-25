@@ -30,6 +30,7 @@ const es = {
     download: "Descargar para Windows",
     discord: "Unirme al Discord",
     meta: "Windows 10 y 11 · 64 bits · Sin permisos de administrador",
+    virustotal: "Revísalo en VirusTotal",
     version: "Versión {v}",
     scroll: "Descubre más",
     before: "Sin VRes",
@@ -149,6 +150,31 @@ const es = {
     privacyText:
       "La única conexión de VRes es la búsqueda de actualizaciones en GitHub, y se puede apagar. Tus ajustes se quedan en tu PC.",
   },
+  virustotal: {
+    eyebrow: "VirusTotal",
+    title: "Revísalo tú mismo en VirusTotal",
+    subtitle:
+      "VirusTotal pasa un archivo por unos 70 antivirus a la vez y muestra qué dice cada uno. Esto dijeron del instalador de VRes.",
+    shotLabel: "Análisis de la v{version} · {date}",
+    shotAlt: "Captura de VirusTotal del instalador VRes_0.1.0_x64-setup.exe: 1 de 69 motores lo marcó como malicioso.",
+    shotLink: "Abrir este análisis en VirusTotal",
+    statLabel: "motores lo marcaron · v{version}",
+    whyTitle: "¿Y ese 1 de 69?",
+    whyText:
+      "Pasa seguido con programas nuevos que todavía no tienen firma digital: algunos antivirus desconfían de cualquier archivo que no conocen. El código de VRes es abierto y cada instalador se compila en GitHub, a la vista de todos.",
+    currentTitle: "La versión actual",
+    hashLabel: "SHA-256 del instalador",
+    currentCta: "Buscar la v{version} en VirusTotal",
+    currentHint: "¿Todavía no aparece? Sube el instalador en virustotal.com: es gratis y tarda un minuto.",
+    currentFallback: "El SHA-256 de cada versión está en GitHub, en el archivo SHA256SUMS.txt.",
+    currentFallbackLink: "Ver la última versión",
+    verifyTitle: "Comprueba tu descarga",
+    verifyText: "Pégalo en PowerShell: si responde True, tu archivo es idéntico al publicado en GitHub.",
+    copy: "Copiar",
+    copied: "¡Copiado!",
+    disclaimer:
+      "VirusTotal analiza archivos con decenas de antivirus, pero no certifica ni respalda programas. Su nombre y su logo son de sus dueños y se usan solo para identificarlo.",
+  },
   anticheat: {
     eyebrow: "Anti-cheats",
     title: "Pensado para convivir con los anti-cheats",
@@ -173,7 +199,7 @@ const es = {
       },
       {
         q: "Windows dice «Windows protegió tu PC». ¿Es un virus?",
-        a: "No. Aparece porque el instalador todavía no está firmado y es nuevo. Toca «Más información» y después «Ejecutar de todas formas». Microsoft Defender no detecta nada en él, y cada versión publica su SHA-256 para verificarla.",
+        a: "No. Aparece porque el instalador todavía no está firmado y es nuevo. Toca «Más información» y después «Ejecutar de todas formas». Microsoft Defender no detecta nada en él, y cada versión publica su SHA-256 para verificarla. También puedes revisarlo en VirusTotal, más arriba.",
       },
       {
         q: "¿Me pueden banear?",
@@ -236,6 +262,7 @@ const en: Copy = {
     download: "Download for Windows",
     discord: "Join the Discord",
     meta: "Windows 10 and 11 · 64-bit · No admin rights needed",
+    virustotal: "Check it on VirusTotal",
     version: "Version {v}",
     scroll: "Discover more",
     before: "Without VRes",
@@ -355,6 +382,31 @@ const en: Copy = {
     privacyText:
       "VRes's only connection is the update check on GitHub, and you can turn it off. Your settings stay on your PC.",
   },
+  virustotal: {
+    eyebrow: "VirusTotal",
+    title: "Check it yourself on VirusTotal",
+    subtitle:
+      "VirusTotal runs a file through about 70 antivirus engines at once and shows what each one says. Here's what they said about the VRes installer.",
+    shotLabel: "v{version} analysis · {date}",
+    shotAlt: "VirusTotal screenshot of the VRes_0.1.0_x64-setup.exe installer: 1 of 69 engines flagged it as malicious.",
+    shotLink: "Open this analysis on VirusTotal",
+    statLabel: "engines flagged it · v{version}",
+    whyTitle: "What about that 1 in 69?",
+    whyText:
+      "It happens a lot with new programs that don't have a digital signature yet: some antivirus engines distrust any file they don't know. VRes's code is open and every installer is built on GitHub, in plain sight.",
+    currentTitle: "The current version",
+    hashLabel: "Installer SHA-256",
+    currentCta: "Look up v{version} on VirusTotal",
+    currentHint: "Not there yet? Upload the installer at virustotal.com: it's free and takes a minute.",
+    currentFallback: "Every version's SHA-256 is on GitHub, in the SHA256SUMS.txt file.",
+    currentFallbackLink: "See the latest version",
+    verifyTitle: "Verify your download",
+    verifyText: "Paste it into PowerShell: if it answers True, your file is identical to the one published on GitHub.",
+    copy: "Copy",
+    copied: "Copied!",
+    disclaimer:
+      "VirusTotal scans files with dozens of antivirus engines, but it doesn't certify or endorse software. Its name and logo belong to their owners and are used only to identify it.",
+  },
   anticheat: {
     eyebrow: "Anti-cheats",
     title: "Built to live alongside anti-cheats",
@@ -379,7 +431,7 @@ const en: Copy = {
       },
       {
         q: "Windows says “Windows protected your PC”. Is it a virus?",
-        a: "No. It shows up because the installer isn't signed yet and is new. Click “More info” and then “Run anyway”. Microsoft Defender finds nothing in it, and every release publishes its SHA-256 so you can verify it.",
+        a: "No. It shows up because the installer isn't signed yet and is new. Click “More info” and then “Run anyway”. Microsoft Defender finds nothing in it, and every release publishes its SHA-256 so you can verify it. You can also check it on VirusTotal, above.",
       },
       {
         q: "Can I get banned?",
@@ -440,6 +492,7 @@ const pt: Copy = {
     download: "Baixar para Windows",
     discord: "Entrar no Discord",
     meta: "Windows 10 e 11 · 64 bits · Sem permissão de administrador",
+    virustotal: "Confira no VirusTotal",
     version: "Versão {v}",
     scroll: "Descubra mais",
     before: "Sem VRes",
@@ -559,6 +612,31 @@ const pt: Copy = {
     privacyText:
       "A única conexão do VRes é a busca por atualizações no GitHub, e dá para desligar. Suas configurações ficam no seu PC.",
   },
+  virustotal: {
+    eyebrow: "VirusTotal",
+    title: "Confira você mesmo no VirusTotal",
+    subtitle:
+      "O VirusTotal passa um arquivo por cerca de 70 antivírus de uma vez e mostra o que cada um diz. Foi isto que disseram do instalador do VRes.",
+    shotLabel: "Análise da v{version} · {date}",
+    shotAlt: "Captura do VirusTotal do instalador VRes_0.1.0_x64-setup.exe: 1 de 69 mecanismos o marcou como malicioso.",
+    shotLink: "Abrir esta análise no VirusTotal",
+    statLabel: "mecanismos o marcaram · v{version}",
+    whyTitle: "E esse 1 de 69?",
+    whyText:
+      "Acontece muito com programas novos que ainda não têm assinatura digital: alguns antivírus desconfiam de qualquer arquivo que não conhecem. O código do VRes é aberto e cada instalador é compilado no GitHub, à vista de todos.",
+    currentTitle: "A versão atual",
+    hashLabel: "SHA-256 do instalador",
+    currentCta: "Procurar a v{version} no VirusTotal",
+    currentHint: "Ainda não aparece? Envie o instalador em virustotal.com: é grátis e leva um minuto.",
+    currentFallback: "O SHA-256 de cada versão está no GitHub, no arquivo SHA256SUMS.txt.",
+    currentFallbackLink: "Ver a última versão",
+    verifyTitle: "Confira o seu download",
+    verifyText: "Cole no PowerShell: se responder True, o seu arquivo é idêntico ao publicado no GitHub.",
+    copy: "Copiar",
+    copied: "Copiado!",
+    disclaimer:
+      "O VirusTotal analisa arquivos com dezenas de antivírus, mas não certifica nem endossa programas. O nome e o logo pertencem aos seus donos e são usados só para identificá-lo.",
+  },
   anticheat: {
     eyebrow: "Anti-cheats",
     title: "Feito para conviver com os anti-cheats",
@@ -583,7 +661,7 @@ const pt: Copy = {
       },
       {
         q: "O Windows diz “O Windows protegeu o computador”. É vírus?",
-        a: "Não. Aparece porque o instalador ainda não é assinado e é novo. Clique em “Mais informações” e depois em “Executar assim mesmo”. O Microsoft Defender não detecta nada nele, e cada versão publica o SHA-256 para conferir.",
+        a: "Não. Aparece porque o instalador ainda não é assinado e é novo. Clique em “Mais informações” e depois em “Executar assim mesmo”. O Microsoft Defender não detecta nada nele, e cada versão publica o SHA-256 para conferir. Você também pode conferir no VirusTotal, mais acima.",
       },
       {
         q: "Posso ser banido?",

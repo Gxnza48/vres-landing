@@ -9,6 +9,7 @@ import { Hero } from "./components/Hero";
 import { HowItWorks } from "./components/HowItWorks";
 import { Nav } from "./components/Nav";
 import { Trust } from "./components/Trust";
+import { VirusTotal } from "./components/VirusTotal";
 import { LangProvider } from "./lang";
 import { SceneProvider } from "./scene-state";
 
@@ -25,6 +26,7 @@ export function App() {
         <AntiCheat />
         <HowItWorks />
         <Trust />
+        <VirusTotal />
         <Faq />
         <Community />
       </main>

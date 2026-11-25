@@ -36,4 +36,5 @@ Vercel la publica sola en cada push a `main` (proyecto `vresolution`). Los encab
 - Solo se promete lo que VRes hace de verdad (ver el [README de la app](https://github.com/Gxnza48/VRes#readme)).
 - Ningún anti-cheat certifica programas de terceros: la sección de anti-cheats explica cómo está hecho VRes, sin afirmar que un anti-cheat lo haya aprobado.
 - Los logos oficiales de juegos y anti-cheats (en `public/brands/` y `src/components/brands.tsx`) se usan solo para identificarlos, con la aclaración de que son de sus dueños y no implican aprobación ni afiliación.
+- VirusTotal: la captura es la que pasó el autor (v0.1.0, 24/11/2026, 1 de 69) y se muestra entera, con su versión y fecha. Nunca decir que VirusTotal "certifica", "verifica" o "confía en" VRes: solo analiza. El botón de la versión actual usa el SHA-256 que publica GitHub (`digest` del instalador).
 - El hero y la demo usan capturas de Fortnite, VALORANT, CS2 y ROB RUN (`public/scenes/`, JPEG de 1920 px con miniaturas), con el efecto aplicado en el navegador. Las capturas son de sus dueños. No hay capturas inventadas de la app.

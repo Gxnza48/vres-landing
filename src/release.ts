@@ -11,12 +11,22 @@ export interface Release {
   /** Descarga directa del instalador (o la página de la versión). */
   url: string;
   sizeMb: number | null;
+  /** Nombre del archivo del instalador. */
+  fileName: string | null;
+  /** SHA-256 del instalador según GitHub, en hexadecimal y minúsculas. */
+  sha256: string | null;
 }
 
 interface GitHubRelease {
   tag_name: string;
   html_url: string;
-  assets: { name: string; browser_download_url: string; size: number }[];
+  assets: { name: string; browser_download_url: string; size: number; digest?: string | null }[];
+}
+
+/** `sha256:<hex>` → `<hex>`; cualquier otra cosa → null. */
+function sha256Of(digest: string | null | undefined): string | null {
+  const match = /^sha256:([0-9a-f]{64})$/i.exec(digest ?? "");
+  return match ? match[1]!.toLowerCase() : null;
 }
 
 let cached: Promise<Release | null> | null = null;
@@ -33,6 +43,8 @@ function load(): Promise<Release | null> {
         version: release.tag_name.replace(/^v/, ""),
         url: installer?.browser_download_url ?? release.html_url,
         sizeMb: installer ? Math.round((installer.size / 1024 / 1024) * 10) / 10 : null,
+        fileName: installer?.name ?? null,
+        sha256: sha256Of(installer?.digest),
       };
     })
     .catch(() => null);
