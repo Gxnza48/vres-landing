@@ -35,6 +35,7 @@ const es = {
     before: "Sin VRes",
     after: "Con VRes",
     drag: "Arrastra para comparar",
+    scene: "Elige tu juego",
     ticker: ["Saturación 300 %", "Vibrance NVIDIA · AMD", "Resolución estirada", "Crosshair", "Perfiles por juego", "Dark Boost", "Zoom", "Gratis", "Sin cuenta", "Código abierto"],
   },
   stats: [
@@ -53,9 +54,10 @@ const es = {
     crosshair: "Crosshair",
     compare: "Mantén para comparar",
     reset: "Restablecer",
-    hint: "¿Ves a alguien en la sombra? Sube el Dark Boost.",
+    hint: "Sube el Dark Boost y mira cómo se abren las sombras.",
+    pick: "Elige el juego",
     disclaimer: "Simulación en el navegador. El resultado real depende de tu monitor.",
-    scene: "Escena de ejemplo: una ciudad de neón al atardecer, con una figura escondida en la sombra.",
+    scene: "Captura de {game} con el efecto aplicado.",
     on: "Activado",
     off: "Apagado",
   },
@@ -206,7 +208,7 @@ const es = {
     discord: "Discord",
     license: "Software libre bajo GPL-3.0.",
     disclaimer:
-      "Proyecto independiente, sin afiliación con fabricantes de placas de video, editores de juegos ni anti-cheats. Las marcas y logos son de sus dueños y se usan solo para identificarlos.",
+      "Proyecto independiente, sin afiliación con fabricantes de placas de video, editores de juegos ni anti-cheats. Las marcas, logos y capturas de juegos son de sus dueños y se usan solo para identificarlos.",
   },
 };
 
@@ -239,6 +241,7 @@ const en: Copy = {
     before: "Without VRes",
     after: "With VRes",
     drag: "Drag to compare",
+    scene: "Pick your game",
     ticker: ["Saturation 300%", "Vibrance NVIDIA · AMD", "Stretched resolution", "Crosshair", "Per-game profiles", "Dark Boost", "Zoom", "Free", "No account", "Open source"],
   },
   stats: [
@@ -257,9 +260,10 @@ const en: Copy = {
     crosshair: "Crosshair",
     compare: "Hold to compare",
     reset: "Reset",
-    hint: "See someone in the shadows? Turn up Dark Boost.",
+    hint: "Turn up Dark Boost and watch the shadows open up.",
+    pick: "Pick the game",
     disclaimer: "Browser simulation. Real results depend on your monitor.",
-    scene: "Sample scene: a neon city at sunset, with a figure hidden in the shadows.",
+    scene: "{game} screenshot with the effect applied.",
     on: "On",
     off: "Off",
   },
@@ -410,7 +414,7 @@ const en: Copy = {
     discord: "Discord",
     license: "Free software under GPL-3.0.",
     disclaimer:
-      "Independent project, not affiliated with graphics card makers, game publishers or anti-cheats. Trademarks and logos belong to their owners and are used only to identify them.",
+      "Independent project, not affiliated with graphics card makers, game publishers or anti-cheats. Trademarks, logos and game screenshots belong to their owners and are used only to identify them.",
   },
 };
 
@@ -441,6 +445,7 @@ const pt: Copy = {
     before: "Sem VRes",
     after: "Com VRes",
     drag: "Arraste para comparar",
+    scene: "Escolha seu jogo",
     ticker: ["Saturação 300%", "Vibrance NVIDIA · AMD", "Resolução esticada", "Crosshair", "Perfis por jogo", "Dark Boost", "Zoom", "Grátis", "Sem conta", "Código aberto"],
   },
   stats: [
@@ -459,9 +464,10 @@ const pt: Copy = {
     crosshair: "Crosshair",
     compare: "Segure para comparar",
     reset: "Restaurar",
-    hint: "Vê alguém na sombra? Aumente o Dark Boost.",
+    hint: "Aumente o Dark Boost e veja as sombras se abrirem.",
+    pick: "Escolha o jogo",
     disclaimer: "Simulação no navegador. O resultado real depende do seu monitor.",
-    scene: "Cena de exemplo: uma cidade neon ao pôr do sol, com uma figura escondida na sombra.",
+    scene: "Captura de {game} com o efeito aplicado.",
     on: "Ligado",
     off: "Desligado",
   },
@@ -612,7 +618,7 @@ const pt: Copy = {
     discord: "Discord",
     license: "Software livre sob GPL-3.0.",
     disclaimer:
-      "Projeto independente, sem afiliação com fabricantes de placas de vídeo, publicadoras de jogos nem anti-cheats. As marcas e logos pertencem aos seus donos e são usados só para identificá-los.",
+      "Projeto independente, sem afiliação com fabricantes de placas de vídeo, publicadoras de jogos nem anti-cheats. As marcas, logos e capturas de jogos pertencem aos seus donos e são usados só para identificá-los.",
   },
 };
 

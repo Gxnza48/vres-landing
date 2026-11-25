@@ -2,7 +2,8 @@ import { Crosshair, Eye, RotateCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { useLang } from "../lang";
-import { CityScene } from "./scene";
+import { useScene } from "../scene-state";
+import { ScenePicker } from "./ScenePicker";
 import { Reveal, SectionHeader } from "./ui";
 
 /** Matriz de saturación (pesos Rec. 709), como la de VRes. */
@@ -82,6 +83,7 @@ function Slider({ id, label, value, min, max, unit, onChange }: SliderProps) {
 /** Demostración: saturación, Dark Boost, crosshair y comparar, sobre una escena propia. */
 export function Demo() {
   const { t } = useLang();
+  const { scene } = useScene();
   const [saturation, setSaturation] = useState(100);
   const [boost, setBoost] = useState(0);
   const [crosshair, setCrosshair] = useState(true);
@@ -127,13 +129,17 @@ export function Demo() {
     <section id="demo" className="relative scroll-mt-20 px-5 py-24 sm:px-8">
       <SectionHeader eyebrow={t.demo.eyebrow} title={t.demo.title} subtitle={t.demo.subtitle} />
       <Reveal className="mx-auto max-w-6xl">
+        <ScenePicker label={t.demo.pick} layout="row" className="mb-5 items-center justify-center" />
         <div className="overflow-hidden rounded-[2rem] border border-line bg-panel shadow-[0_0_80px_rgb(158_250_18/0.08)]">
           <div ref={stage} className="relative aspect-video w-full select-none">
-            <CityScene
-              id="demo"
-              filter="url(#vres-demo)"
-              label={t.demo.scene}
-              defs={
+            <svg
+              viewBox="0 0 1600 900"
+              preserveAspectRatio="xMidYMid slice"
+              role="img"
+              aria-label={t.demo.scene.replace("{game}", scene.name)}
+              className="absolute inset-0 h-full w-full"
+            >
+              <defs>
                 <filter id="vres-demo" x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
                   <feComponentTransfer>
                     <feFuncR type="gamma" amplitude={1} exponent={exponent} offset={offset} />
@@ -142,12 +148,20 @@ export function Demo() {
                   </feComponentTransfer>
                   <feColorMatrix type="matrix" values={matrix} />
                 </filter>
-              }
-            />
+              </defs>
+              <image
+                key={scene.id}
+                href={scene.src}
+                width="1600"
+                height="900"
+                preserveAspectRatio="xMidYMid slice"
+                filter="url(#vres-demo)"
+              />
+            </svg>
 
             {crosshair && <CrosshairOverlay />}
 
-            <div className="pointer-events-none absolute top-4 left-4 flex flex-col gap-1 font-mono text-[11px] tracking-wider text-lime uppercase sm:text-xs">
+            <div className="pointer-events-none absolute bottom-4 left-4 flex flex-col gap-1 font-mono text-[11px] tracking-wider text-lime uppercase sm:text-xs">
               <span className="rounded bg-ink/70 px-2 py-1 backdrop-blur">
                 {t.demo.saturation} {comparing ? 100 : Math.round(saturation)}%
               </span>

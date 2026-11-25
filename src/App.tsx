@@ -10,10 +10,12 @@ import { HowItWorks } from "./components/HowItWorks";
 import { Nav } from "./components/Nav";
 import { Trust } from "./components/Trust";
 import { LangProvider } from "./lang";
+import { SceneProvider } from "./scene-state";
 
 export function App() {
   return (
     <LangProvider>
+      <SceneProvider>
       <Nav />
       <main>
         <Hero />
@@ -27,6 +29,7 @@ export function App() {
         <Community />
       </main>
       <Footer />
+      </SceneProvider>
     </LangProvider>
   );
 }

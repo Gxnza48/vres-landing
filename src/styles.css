@@ -73,6 +73,14 @@
       transform: scale(1);
     }
   }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   @keyframes pipeline {
     0% {
       top: 2rem;

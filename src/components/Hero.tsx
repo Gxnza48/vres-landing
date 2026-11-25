@@ -3,7 +3,8 @@ import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, ty
 
 import { useLang } from "../lang";
 import { DISCORD_URL, RELEASES_URL, useRelease } from "../release";
-import { CityScene } from "./scene";
+import { useScene } from "../scene-state";
+import { ScenePicker } from "./ScenePicker";
 import { DiscordIcon } from "./ui";
 
 const MIN = 8;
@@ -17,6 +18,7 @@ const clamp = (value: number) => Math.min(MAX, Math.max(MIN, value));
 export function Hero() {
   const { t } = useLang();
   const release = useRelease();
+  const { scene } = useScene();
   const section = useRef<HTMLElement>(null);
   const [touched, setTouched] = useState(false);
   const [value, setValue] = useState(60);
@@ -66,15 +68,27 @@ export function Hero() {
       style={{ "--split": "60%" } as CSSProperties}
     >
       {/* Antes: la imagen tal cual. */}
-      <div aria-hidden className="absolute inset-0 [filter:saturate(0.3)_brightness(0.85)_contrast(0.94)]">
-        <CityScene id="hero-before" />
+      <div aria-hidden className="absolute inset-0 [filter:saturate(0.28)_brightness(0.8)_contrast(0.92)]">
+        <img
+          key={scene.id}
+          src={scene.src}
+          alt=""
+          className="h-full w-full animate-[fade_0.6s_ease-out] object-cover"
+          style={{ objectPosition: scene.position }}
+        />
       </div>
       {/* Después: con VRes. */}
       <div
         aria-hidden
-        className="absolute inset-0 [clip-path:inset(0_0_0_var(--split))] [filter:saturate(1.9)_contrast(1.06)_brightness(1.06)]"
+        className="absolute inset-0 [clip-path:inset(0_0_0_var(--split))] [filter:saturate(1.75)_contrast(1.08)_brightness(1.04)]"
       >
-        <CityScene id="hero-after" />
+        <img
+          key={scene.id}
+          src={scene.src}
+          alt=""
+          className="h-full w-full animate-[fade_0.6s_ease-out] object-cover"
+          style={{ objectPosition: scene.position }}
+        />
       </div>
       <div aria-hidden className="scanlines pointer-events-none absolute inset-0 opacity-50" />
       <div
@@ -83,7 +97,7 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/75 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/55 to-transparent"
       />
       <div
         aria-hidden
@@ -121,8 +135,15 @@ export function Hero() {
         </button>
       </div>
 
+      <ScenePicker
+        label={t.hero.scene}
+        layout="column"
+        className="absolute right-8 bottom-24 z-30 hidden lg:flex"
+      />
+
       {/* Contenido. */}
       <div className="pointer-events-none relative z-10 mx-auto flex min-h-[max(100svh,46rem)] max-w-7xl flex-col justify-end px-5 pt-48 pb-28 sm:px-8 sm:pb-32">
+        <ScenePicker label={t.hero.scene} layout="row" className="pointer-events-auto mb-8 lg:hidden" />
         <p className="font-mono text-[11px] font-semibold tracking-[0.3em] text-lime uppercase sm:text-xs">
           // {release ? `v${release.version}` : "VRes"} · {t.hero.badge}
         </p>

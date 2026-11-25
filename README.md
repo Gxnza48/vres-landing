@@ -36,4 +36,4 @@ Vercel la publica sola en cada push a `main` (proyecto `vresolution`). Los encab
 - Solo se promete lo que VRes hace de verdad (ver el [README de la app](https://github.com/Gxnza48/VRes#readme)).
 - Ningún anti-cheat certifica programas de terceros: la sección de anti-cheats explica cómo está hecho VRes, sin afirmar que un anti-cheat lo haya aprobado.
 - Los logos oficiales de juegos y anti-cheats (en `public/brands/` y `src/components/brands.tsx`) se usan solo para identificarlos, con la aclaración de que son de sus dueños y no implican aprobación ni afiliación.
-- El hero muestra la escena propia de la demo en "sin VRes" y "con VRes": no hay capturas inventadas de la app.
+- El hero y la demo usan capturas de Fortnite, VALORANT, CS2 y ROB RUN (`public/scenes/`, JPEG de 1920 px con miniaturas), con el efecto aplicado en el navegador. Las capturas son de sus dueños. No hay capturas inventadas de la app.
