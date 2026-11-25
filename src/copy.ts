@@ -17,6 +17,7 @@ const es = {
     features: "Funciones",
     how: "Cómo funciona",
     faq: "Preguntas",
+    crosshairs: "Miras",
     download: "Descargar",
     menu: "Menú",
     language: "Idioma",
@@ -37,7 +38,7 @@ const es = {
     after: "Con VRes",
     drag: "Arrastra para comparar",
     scene: "Elige tu juego",
-    ticker: ["Saturación 300 %", "Vibrance NVIDIA · AMD", "Resolución estirada", "Crosshair", "Perfiles por juego", "Dark Boost", "Zoom", "Gratis", "Sin cuenta", "Código abierto"],
+    ticker: ["Saturación 300 %", "Vibrance NVIDIA · AMD", "Resolución estirada", "Crosshair", "Perfiles por juego", "Dark Boost", "Potato NVIDIA", "Gratis", "Sin cuenta", "Código abierto"],
   },
   stats: [
     { value: "300 %", label: "de saturación máxima" },
@@ -92,8 +93,8 @@ const es = {
         text: "Cada juego con su look, su crosshair y su resolución. Se aplican solos al entrar y vuelven al salir.",
       },
       enhancers: {
-        title: "Dark Boost y Zoom",
-        text: "Aclara las sombras o haz zoom manteniendo una tecla o un botón del mouse. Vienen apagados.",
+        title: "Dark Boost y potato",
+        text: "Aclara las sombras manteniendo una tecla o un botón del mouse, y en NVIDIA pon texturas «potato» para más FPS. Vienen apagados.",
       },
       looks: {
         title: "Looks y códigos",
@@ -186,7 +187,7 @@ const es = {
       { name: "Riot Vanguard", text: "El anti-cheat de VALORANT." },
       { name: "FACEIT AC", text: "El anti-cheat de las partidas de CS2 en FACEIT." },
     ],
-    note: "Ningún anti-cheat certifica programas de terceros, y los editores juzgan por el efecto: el crosshair, el zoom y el Dark Boost pueden considerarse ventaja en algunos juegos o torneos. Por eso vienen apagados y con aviso.",
+    note: "Ningún anti-cheat certifica programas de terceros, y los editores juzgan por el efecto: el crosshair, el Dark Boost y las texturas potato pueden considerarse ventaja en algunos juegos o torneos. Por eso vienen apagados y con aviso.",
     link: "Leer el detalle",
     brands: "Los logos son de sus dueños y se usan solo para identificar cada anti-cheat: no implican aprobación ni afiliación.",
   },
@@ -203,11 +204,11 @@ const es = {
       },
       {
         q: "¿Me pueden banear?",
-        a: "VRes no interactúa con los juegos, pero los editores juzgan por el efecto y no por el método. Revisa las reglas de lo que juegas, sobre todo para el crosshair, el zoom y el Dark Boost.",
+        a: "VRes no interactúa con los juegos, pero los editores juzgan por el efecto y no por el método. Revisa las reglas de lo que juegas, sobre todo para el crosshair, el Dark Boost y las texturas potato.",
       },
       {
         q: "¿Funciona en pantalla completa exclusiva?",
-        a: "El vibrance por driver y las rampas de gamma sí. La saturación de la matriz de Windows, el crosshair y el zoom no se ven ahí: usa el modo ventana sin bordes.",
+        a: "El vibrance por driver y las rampas de gamma sí. Desde la v0.10, en pantalla completa exclusiva la saturación pasa sola a la vibrance del driver; el crosshair se ve en ventana sin bordes y en la pantalla completa de Windows 10/11.",
       },
       {
         q: "¿Consume rendimiento?",
@@ -249,6 +250,7 @@ const en: Copy = {
     features: "Features",
     how: "How it works",
     faq: "FAQ",
+    crosshairs: "Crosshairs",
     download: "Download",
     menu: "Menu",
     language: "Language",
@@ -269,7 +271,7 @@ const en: Copy = {
     after: "With VRes",
     drag: "Drag to compare",
     scene: "Pick your game",
-    ticker: ["Saturation 300%", "Vibrance NVIDIA · AMD", "Stretched resolution", "Crosshair", "Per-game profiles", "Dark Boost", "Zoom", "Free", "No account", "Open source"],
+    ticker: ["Saturation 300%", "Vibrance NVIDIA · AMD", "Stretched resolution", "Crosshair", "Per-game profiles", "Dark Boost", "NVIDIA potato", "Free", "No account", "Open source"],
   },
   stats: [
     { value: "300%", label: "max saturation" },
@@ -324,8 +326,8 @@ const en: Copy = {
         text: "Each game with its own look, crosshair and resolution. Applied when you start playing, reverted when you leave.",
       },
       enhancers: {
-        title: "Dark Boost & Zoom",
-        text: "Brighten shadows or zoom in while holding a key or mouse button. Off by default.",
+        title: "Dark Boost & potato",
+        text: "Brighten shadows while holding a key or mouse button, and on NVIDIA set “potato” textures for more FPS. Off by default.",
       },
       looks: {
         title: "Looks and codes",
@@ -418,7 +420,7 @@ const en: Copy = {
       { name: "Riot Vanguard", text: "VALORANT's anti-cheat." },
       { name: "FACEIT AC", text: "The anti-cheat of CS2 matches on FACEIT." },
     ],
-    note: "No anti-cheat certifies third-party software, and publishers judge by effect: the crosshair, zoom and Dark Boost may count as an advantage in some games or tournaments. That's why they ship turned off with a warning.",
+    note: "No anti-cheat certifies third-party software, and publishers judge by effect: the crosshair, Dark Boost and potato textures may count as an advantage in some games or tournaments. That's why they ship turned off with a warning.",
     link: "Read the details",
     brands: "Logos belong to their owners and are used only to identify each anti-cheat: they don't imply approval or affiliation.",
   },
@@ -435,11 +437,11 @@ const en: Copy = {
       },
       {
         q: "Can I get banned?",
-        a: "VRes doesn't interact with games, but publishers judge by effect, not method. Check the rules of what you play, especially for the crosshair, zoom and Dark Boost.",
+        a: "VRes doesn't interact with games, but publishers judge by effect, not method. Check the rules of what you play, especially for the crosshair, Dark Boost and potato textures.",
       },
       {
         q: "Does it work in exclusive fullscreen?",
-        a: "Driver vibrance and gamma ramps do. The Windows matrix saturation, the crosshair and zoom don't show there: use borderless windowed mode.",
+        a: "Driver vibrance and gamma ramps do. Since v0.10, in exclusive full screen saturation moves to the driver's vibrance on its own; the crosshair shows in borderless windowed and in Windows 10/11 full screen.",
       },
       {
         q: "Does it cost performance?",
@@ -479,6 +481,7 @@ const pt: Copy = {
     features: "Recursos",
     how: "Como funciona",
     faq: "Perguntas",
+    crosshairs: "Miras",
     download: "Baixar",
     menu: "Menu",
     language: "Idioma",
@@ -499,7 +502,7 @@ const pt: Copy = {
     after: "Com VRes",
     drag: "Arraste para comparar",
     scene: "Escolha seu jogo",
-    ticker: ["Saturação 300%", "Vibrance NVIDIA · AMD", "Resolução esticada", "Crosshair", "Perfis por jogo", "Dark Boost", "Zoom", "Grátis", "Sem conta", "Código aberto"],
+    ticker: ["Saturação 300%", "Vibrance NVIDIA · AMD", "Resolução esticada", "Crosshair", "Perfis por jogo", "Dark Boost", "Potato NVIDIA", "Grátis", "Sem conta", "Código aberto"],
   },
   stats: [
     { value: "300%", label: "de saturação máxima" },
@@ -554,8 +557,8 @@ const pt: Copy = {
         text: "Cada jogo com seu look, seu crosshair e sua resolução. Aplicados ao entrar e desfeitos ao sair.",
       },
       enhancers: {
-        title: "Dark Boost e Zoom",
-        text: "Clareie as sombras ou dê zoom segurando uma tecla ou um botão do mouse. Vêm desligados.",
+        title: "Dark Boost e potato",
+        text: "Clareie as sombras segurando uma tecla ou um botão do mouse e, na NVIDIA, use texturas «potato» para mais FPS. Vêm desligados.",
       },
       looks: {
         title: "Looks e códigos",
@@ -648,7 +651,7 @@ const pt: Copy = {
       { name: "Riot Vanguard", text: "O anti-cheat de VALORANT." },
       { name: "FACEIT AC", text: "O anti-cheat das partidas de CS2 na FACEIT." },
     ],
-    note: "Nenhum anti-cheat certifica programas de terceiros, e as publicadoras julgam pelo efeito: o crosshair, o zoom e o Dark Boost podem ser considerados vantagem em alguns jogos ou torneios. Por isso vêm desligados e com aviso.",
+    note: "Nenhum anti-cheat certifica programas de terceiros, e as publicadoras julgam pelo efeito: o crosshair, o Dark Boost e as texturas potato podem ser considerados vantagem em alguns jogos ou torneios. Por isso vêm desligados e com aviso.",
     link: "Ler os detalhes",
     brands: "Os logos pertencem aos seus donos e são usados só para identificar cada anti-cheat: não implicam aprovação nem afiliação.",
   },
@@ -665,11 +668,11 @@ const pt: Copy = {
       },
       {
         q: "Posso ser banido?",
-        a: "O VRes não interage com os jogos, mas as publicadoras julgam pelo efeito, não pelo método. Confira as regras do que você joga, principalmente para o crosshair, o zoom e o Dark Boost.",
+        a: "O VRes não interage com os jogos, mas as publicadoras julgam pelo efeito, não pelo método. Confira as regras do que você joga, principalmente para o crosshair, o Dark Boost e as texturas potato.",
       },
       {
         q: "Funciona em tela cheia exclusiva?",
-        a: "O vibrance pelo driver e as rampas de gama, sim. A saturação da matriz do Windows, o crosshair e o zoom não aparecem ali: use o modo janela sem bordas.",
+        a: "O vibrance pelo driver e as rampas de gama, sim. Desde a v0.10, em tela cheia exclusiva a saturação passa sozinha para o vibrance do driver; o crosshair aparece em janela sem bordas e na tela cheia do Windows 10/11.",
       },
       {
         q: "Consome desempenho?",

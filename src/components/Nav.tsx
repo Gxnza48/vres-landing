@@ -20,11 +20,14 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Fuera de la portada (por ejemplo en /miras), los enlaces vuelven a ella.
+  const home = window.location.pathname === "/" ? "" : "/";
   const links = [
-    { href: "#demo", label: t.nav.demo },
-    { href: "#features", label: t.nav.features },
-    { href: "#how", label: t.nav.how },
-    { href: "#faq", label: t.nav.faq },
+    { href: `${home}#demo`, label: t.nav.demo },
+    { href: `${home}#features`, label: t.nav.features },
+    { href: "/miras", label: t.nav.crosshairs },
+    { href: `${home}#how`, label: t.nav.how },
+    { href: `${home}#faq`, label: t.nav.faq },
   ];
 
   return (
@@ -36,7 +39,7 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8">
-        <a href="#top" className="flex shrink-0 items-center" aria-label="VRes">
+        <a href={home ? "/" : "#top"} className="flex shrink-0 items-center" aria-label="VRes">
           <img src="/logo.png" alt="VRes" className="h-7 w-auto" width={99} height={28} />
         </a>
 
