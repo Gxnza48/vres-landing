@@ -220,6 +220,12 @@ const es = {
       },
     ],
   },
+  partner: {
+    badge: "Partner oficial",
+    name: "ROB RUN LATAM",
+    text: "Supervivencia en Latinoamérica: la comunidad de ROB RUN para partidas, clanes, clips, ayuda y los looks de VRes para el juego.",
+    cta: "Unirme al Discord",
+  },
   community: {
     eyebrow: "Comunidad",
     title: "Súmate al Discord",
@@ -453,6 +459,12 @@ const en: Copy = {
       },
     ],
   },
+  partner: {
+    badge: "Official partner",
+    name: "ROB RUN LATAM",
+    text: "Survival in Latin America: the ROB RUN community for matches, clans, clips, help and VRes looks for the game.",
+    cta: "Join the Discord",
+  },
   community: {
     eyebrow: "Community",
     title: "Join the Discord",
@@ -683,6 +695,12 @@ const pt: Copy = {
         a: "Feche o VRes ou aperte Ctrl + Alt + Shift + R. Também há um atalho “VRes — Restaurar tela” no menu Iniciar.",
       },
     ],
+  },
+  partner: {
+    badge: "Parceiro oficial",
+    name: "ROB RUN LATAM",
+    text: "Sobrevivência na América Latina: a comunidade de ROB RUN para partidas, clãs, clipes, ajuda e looks do VRes para o jogo.",
+    cta: "Entrar no Discord",
   },
   community: {
     eyebrow: "Comunidade",

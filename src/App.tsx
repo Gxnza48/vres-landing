@@ -9,6 +9,7 @@ import { Games } from "./components/Games";
 import { Hero } from "./components/Hero";
 import { HowItWorks } from "./components/HowItWorks";
 import { Nav } from "./components/Nav";
+import { Partner } from "./components/Partner";
 import { Trust } from "./components/Trust";
 import { VirusTotal } from "./components/VirusTotal";
 import { LangProvider } from "./lang";
@@ -38,6 +39,7 @@ export function App() {
         <Demo />
         <Features />
         <Games />
+        <Partner />
         <AntiCheat />
         <HowItWorks />
         <Trust />

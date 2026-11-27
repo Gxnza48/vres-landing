@@ -65,3 +65,5 @@ export function useRelease(): Release | null {
   }, []);
   return release;
 }
+/** Servidor partner oficial: ROB RUN LATAM. */
+export const PARTNER_ROBRUN_DISCORD_URL = "https://discord.gg/fnJNph5fp8";

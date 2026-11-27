@@ -235,3 +235,40 @@
     transform: none;
   }
 }
+
+/* Sello "Partner oficial": dorado con brillo que recorre el texto y respira. */
+.partner-gold {
+  background-image: linear-gradient(100deg, #b8860b 0%, #f5c542 30%, #fff4c2 45%, #f5c542 60%, #b8860b 100%);
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgb(245 197 66 / 0.55));
+  animation:
+    partner-glint 3.2s linear infinite,
+    partner-fade 3.2s ease-in-out infinite;
+}
+.partner-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 244 194 / 0.28) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: partner-sweep 4.8s ease-in-out infinite;
+}
+@keyframes partner-glint {
+  from { background-position: 125% 0; }
+  to { background-position: -125% 0; }
+}
+@keyframes partner-fade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.72; }
+}
+@keyframes partner-sweep {
+  0%, 55% { transform: translateX(-100%); }
+  85%, 100% { transform: translateX(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-gold, .partner-sweep::after { animation: none; }
+}
