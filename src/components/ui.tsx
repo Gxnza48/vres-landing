@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /** Aparece suavemente al entrar en pantalla. */
 export function Reveal({
@@ -57,26 +57,19 @@ export function SectionHeader({
   subtitle?: string;
 }) {
   return (
-    <Reveal className="mx-auto mb-14 max-w-3xl text-center">
+    <Reveal className="mx-auto mb-12 max-w-3xl text-center">
       {eyebrow && (
         <p className="mb-4 font-mono text-xs font-semibold tracking-[0.35em] text-lime uppercase">
           <span className="text-lime/50">// </span>
           {eyebrow}
         </p>
       )}
-      <h2 className="font-display text-3xl leading-tight font-black tracking-tight text-balance sm:text-5xl">
+      <h2 className="font-display text-3xl leading-tight font-black tracking-tight text-balance uppercase sm:text-5xl">
         {title}
       </h2>
       {subtitle && <p className="mt-5 text-base text-pretty text-muted sm:text-lg">{subtitle}</p>}
     </Reveal>
   );
-}
-
-/** Mueve el brillo de una tarjeta `.spotlight` con el mouse. */
-export function trackSpotlight(event: MouseEvent<HTMLElement>) {
-  const rect = event.currentTarget.getBoundingClientRect();
-  event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-  event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
 }
 
 /** Logo de GitHub (marca de GitHub, para enlazar al repositorio). */

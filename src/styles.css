@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource/orbitron/700.css";
 @import "@fontsource/orbitron/900.css";
+/* Solo los tokens de Vizzele (variables): sus estilos se reescriben abajo con la marca de VRes. */
+@import "@vizzele/css/tokens.css";
 
 @theme {
   --color-lime: #9efa12;
@@ -155,29 +157,6 @@
     color: transparent;
   }
 
-  /* Tarjeta con un brillo que sigue al mouse (--mx/--my los pone JS). */
-  .spotlight {
-    position: relative;
-    isolation: isolate;
-  }
-  .spotlight::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(
-      420px circle at var(--mx, 50%) var(--my, 50%),
-      rgb(158 250 18 / 0.13),
-      transparent 60%
-    );
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: -1;
-  }
-  .spotlight:hover::before {
-    opacity: 1;
-  }
-
   /* Aparición al entrar en pantalla. */
   .reveal {
     opacity: 0;
@@ -271,4 +250,186 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .partner-gold, .partner-sweep::after { animation: none; }
+}
+
+/* ———————— Vizzele con la marca de VRes (lima sobre negro, esquinas de HUD) ———————— */
+:root {
+  --vz-accent: #9efa12;
+  --vz-cyan: #9efa12;
+  --vz-magenta: #6fbf00;
+}
+
+/* Luz que sigue al puntero (SpotlightCard): relleno tenue y borde lima. */
+.vz-spotlight {
+  position: relative;
+  isolation: isolate;
+  --vz-spot-size: 340px;
+}
+.vz-spotlight::before,
+.vz-spotlight::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: var(--vz-spot, 0);
+}
+.vz-spotlight::before {
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    var(--vz-spot-size) circle at var(--vz-spot-x, 50%) var(--vz-spot-y, 50%),
+    rgb(158 250 18 / 0.1),
+    transparent 65%
+  );
+}
+.vz-spotlight::after {
+  inset: -1px;
+  padding: 1px;
+  z-index: 1;
+  background: radial-gradient(
+    calc(var(--vz-spot-size) * 0.7) circle at var(--vz-spot-x, 50%) var(--vz-spot-y, 50%),
+    rgb(158 250 18 / 0.85),
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+/* Comparador antes/después (CompareSlider). */
+.vz-compare {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+.vz-compare :is(img, video) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.vz-compare-before {
+  height: 100%;
+}
+.vz-compare-after {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 0 var(--vz-cmp));
+}
+.vz-compare-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--vz-cmp);
+  z-index: 2;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--color-lime);
+  box-shadow: 0 0 18px rgb(158 250 18 / 0.8);
+}
+.vz-compare-knob {
+  position: absolute;
+  top: 50%;
+  left: var(--vz-cmp);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: -26px;
+  background: var(--color-lime);
+  color: #000;
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+  transform: scale(var(--vz-cmp-sx, 1), var(--vz-cmp-sy, 1));
+  cursor: grab;
+}
+.vz-compare-knob:focus-visible {
+  outline: none;
+  background: #fff;
+}
+.vz-compare-knob svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: square;
+}
+.vz-compare-tag {
+  position: absolute;
+  top: 14px;
+  z-index: 2;
+  padding: 6px 10px;
+  background: rgb(0 0 0 / 0.72);
+  color: #fff;
+  font: 700 11px / 1 var(--font-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.vz-compare-tag[data-side="before"] {
+  left: 14px;
+  opacity: clamp(0, calc((var(--vz-cmp-n) - 14) / 10), 1);
+}
+.vz-compare-tag[data-side="after"] {
+  right: 14px;
+  color: var(--color-lime);
+  opacity: clamp(0, calc((86 - var(--vz-cmp-n)) / 10), 1);
+}
+
+/* Cinta infinita (Marquee). */
+.vz-marquee-js {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.vz-marquee-js[data-vz-dragging] {
+  cursor: grabbing;
+}
+.vz-marquee-js:focus-visible {
+  outline: none;
+}
+.vz-marquee-js-track {
+  display: flex;
+  width: max-content;
+  gap: var(--vz-marquee-gap);
+  will-change: transform;
+}
+.vz-marquee-js-group {
+  display: flex;
+  flex: none;
+  gap: var(--vz-marquee-gap);
+}
+@media (prefers-reduced-motion: reduce) {
+  .vz-marquee-js {
+    overflow-x: auto;
+    cursor: auto;
+    scrollbar-width: none;
+  }
+}
+
+/* Esquinas de visor para marcos de capturas. */
+.hud-frame {
+  position: relative;
+}
+.hud-frame > .hud-c {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--color-lime);
+  border-style: solid;
+  z-index: 5;
+  pointer-events: none;
 }

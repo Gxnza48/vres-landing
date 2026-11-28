@@ -1,4 +1,5 @@
-import { ChevronsLeftRight, Download } from "lucide-react";
+import { Magnetic, Marquee } from "@vizzele/react";
+import { ArrowRight, ChevronsLeftRight, Download } from "lucide-react";
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 
 import { useLang } from "../lang";
@@ -57,8 +58,6 @@ export function Hero() {
     setValue(clamp(next));
     place(next);
   };
-
-  const ticker = [...t.hero.ticker, ...t.hero.ticker, ...t.hero.ticker, ...t.hero.ticker];
 
   return (
     <section
@@ -144,6 +143,16 @@ export function Hero() {
       {/* Contenido. */}
       <div className="pointer-events-none relative z-10 mx-auto flex min-h-[max(100svh,46rem)] max-w-7xl flex-col justify-end px-5 pt-48 pb-28 sm:px-8 sm:pb-32">
         <ScenePicker label={t.hero.scene} layout="row" className="pointer-events-auto mb-8 lg:hidden" />
+        <a
+          href="#potato"
+          className="cut-sm pointer-events-auto mb-6 inline-flex items-center gap-2.5 self-start border border-lime/50 bg-black/70 py-2 pr-3 pl-2 text-xs font-semibold text-white backdrop-blur transition hover:border-lime hover:bg-lime/15 sm:text-sm"
+        >
+          <span className="bg-lime px-1.5 py-0.5 font-display text-[10px] font-black tracking-widest text-ink uppercase">
+            NVIDIA
+          </span>
+          {t.hero.potatoPill}
+          <ArrowRight className="size-4 text-lime" aria-hidden />
+        </a>
         <p className="font-mono text-[11px] font-semibold tracking-[0.3em] text-lime uppercase sm:text-xs">
           // {release ? `v${release.version}` : "VRes"} · {t.hero.badge}
         </p>
@@ -153,9 +162,13 @@ export function Hero() {
         </h1>
         <p className="mt-6 max-w-xl text-base text-pretty text-white/80 sm:text-lg">{t.hero.subtitle}</p>
         <div className="pointer-events-auto mt-8 flex flex-col gap-3 sm:flex-row">
-          <a
+          <Magnetic
+            as="a"
             href={release?.url ?? RELEASES_URL}
-            className="cut group inline-flex items-center justify-center gap-3 bg-lime px-7 py-4 text-ink transition hover:brightness-110"
+            strength={0.25}
+            radius={40}
+            style={{ display: "flex" }}
+            className="cut group items-center justify-center gap-3 bg-lime px-7 py-4 text-ink shadow-[0_0_40px_rgb(158_250_18/0.35)] transition-[filter] hover:brightness-110"
           >
             <Download className="size-5 transition group-hover:translate-y-0.5" aria-hidden />
             <span className="flex flex-col items-start leading-tight">
@@ -167,7 +180,7 @@ export function Hero() {
                 </span>
               )}
             </span>
-          </a>
+          </Magnetic>
           <a
             href={DISCORD_URL}
             target="_blank"
@@ -181,7 +194,7 @@ export function Hero() {
         <p className="mt-4 text-xs text-white/55">
           {t.hero.meta} ·{" "}
           <a
-            href="#virustotal"
+            href="#trust"
             className="pointer-events-auto font-semibold text-white/80 underline decoration-white/30 underline-offset-2 transition hover:text-lime hover:decoration-lime"
           >
             {t.hero.virustotal}
@@ -189,13 +202,12 @@ export function Hero() {
         </p>
       </div>
 
-      {/* Cinta tipo transmisión. */}
-      <div className="absolute inset-x-0 bottom-0 z-20 overflow-hidden bg-lime py-3 text-ink">
-        <div className="flex w-max animate-marquee">
-          {ticker.map((item, index) => (
+      {/* Cinta tipo transmisión: se frena al pasar el mouse y se puede arrastrar. */}
+      <div className="absolute inset-x-0 bottom-0 z-20 bg-lime py-3 text-ink">
+        <Marquee speed={45} gap={0} fade={false} label={t.hero.ticker.join(" · ")}>
+          {t.hero.ticker.map((item) => (
             <span
-              key={index}
-              aria-hidden={index >= t.hero.ticker.length}
+              key={item}
               className="flex items-center gap-6 pr-6 font-display text-xs font-black tracking-[0.2em] whitespace-nowrap uppercase sm:text-sm"
             >
               {item}
@@ -204,7 +216,7 @@ export function Hero() {
               </span>
             </span>
           ))}
-        </div>
+        </Marquee>
       </div>
     </section>
   );

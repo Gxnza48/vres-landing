@@ -23,10 +23,10 @@ export function Nav() {
   // Fuera de la portada (por ejemplo en /miras), los enlaces vuelven a ella.
   const home = window.location.pathname === "/" ? "" : "/";
   const links = [
-    { href: `${home}#demo`, label: t.nav.demo },
+    { href: `${home}#potato`, label: t.nav.potato },
     { href: `${home}#features`, label: t.nav.features },
     { href: "/miras", label: t.nav.crosshairs },
-    { href: `${home}#how`, label: t.nav.how },
+    { href: `${home}#trust`, label: t.nav.trust },
     { href: `${home}#faq`, label: t.nav.faq },
   ];
 

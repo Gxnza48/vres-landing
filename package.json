@@ -12,6 +12,8 @@
   "dependencies": {
     "@fontsource/orbitron": "^5.3.0",
     "@vercel/analytics": "2.0.1",
+    "@vizzele/css": "0.10.0",
+    "@vizzele/react": "0.10.0",
     "lucide-react": "^1.79.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

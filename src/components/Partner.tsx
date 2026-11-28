@@ -8,13 +8,13 @@ import { DiscordIcon, Reveal } from "./ui";
 export function Partner() {
   const { t } = useLang();
   return (
-    <section id="partner" className="relative scroll-mt-20 px-5 py-16 sm:px-8">
+    <section id="partner" className="relative scroll-mt-16 px-5 py-12 sm:px-8 sm:py-16">
       <Reveal className="mx-auto max-w-6xl">
         <a
           href={PARTNER_ROBRUN_DISCORD_URL}
           target="_blank"
           rel="noreferrer"
-          className="partner-sweep group relative block overflow-hidden rounded-[2rem] border border-[#f5c542]/40 shadow-[0_0_60px_rgb(245_197_66/0.15)] transition hover:border-[#f5c542]/80"
+          className="partner-sweep cut group relative block overflow-hidden border border-[#f5c542]/40 shadow-[0_0_60px_rgb(245_197_66/0.15)] transition hover:border-[#f5c542]/80"
         >
           <img
             src="/partners/robrun-latam.jpg"
@@ -37,7 +37,7 @@ export function Partner() {
               </h2>
               <p className="mt-2 text-sm text-white/80 sm:text-base">{t.partner.text}</p>
             </div>
-            <span className="inline-flex shrink-0 items-center gap-3 self-start rounded-2xl bg-discord px-6 py-3.5 text-base font-bold text-white shadow-[0_0_40px_rgb(88_101_242/0.5)] transition group-hover:-translate-y-0.5 group-hover:brightness-110 sm:self-auto">
+            <span className="cut-sm inline-flex shrink-0 items-center gap-3 self-start bg-discord px-6 py-3.5 text-base font-bold text-white shadow-[0_0_40px_rgb(88_101_242/0.5)] transition group-hover:-translate-y-0.5 group-hover:brightness-110 sm:self-auto">
               <DiscordIcon className="size-5" />
               {t.partner.cta}
               <ArrowUpRight className="size-5" aria-hidden />

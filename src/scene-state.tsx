@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-/** Capturas de juegos para el hero y la demo (de sus respectivos dueños). */
+/** Capturas de juegos para el hero (de sus respectivos dueños). */
 export interface Scene {
   id: "fortnite" | "valorant" | "cs2" | "robrun";
   name: string;
@@ -24,7 +24,7 @@ interface SceneContext {
 
 const Context = createContext<SceneContext | null>(null);
 
-/** El juego elegido: el mismo en el hero y en la demo. */
+/** El juego elegido en el hero. */
 export function SceneProvider({ children }: { children: ReactNode }) {
   const [id, setId] = useState<Scene["id"]>("fortnite");
   const scene = SCENES.find((item) => item.id === id) ?? SCENES[0];
